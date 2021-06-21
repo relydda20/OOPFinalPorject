@@ -15,10 +15,11 @@ public class AudioSettings {
     // whereas if it isn't signed then the values will be stored from 0 and above)
     public boolean signData = true;
     // Determines if the audio samples will be stored in big endian or small endian
-    public boolean bigEndian = false;
+    public boolean bigEndian = true;
     // The amount of time it takes for the computer to process incoming audio
     // Set to the default value of buffer size
     public int bufferSize = 4096;
+
 
     public float getSampleRate() {
         return sampleRate;

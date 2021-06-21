@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static JotDownAudio.Driver.menu;
-
 public class SoundRecorder extends AudioSettings implements Runnable {
 
     private AudioController audio_c;
@@ -28,10 +26,11 @@ public class SoundRecorder extends AudioSettings implements Runnable {
     }
 
     // A Thread that functions to record audio based on user specified input of file name and default parameters of a WAV file
+    @Override
     public void run() {
         try {
             // Receives the audio format from AudioSettings class
-            recording_format = new AudioFormat( getSampleRate(), getSampleSizeInBits(), getChannels(), isSignData(), isBigEndian());
+            recording_format = new AudioFormat(getSampleRate(), getSampleSizeInBits(), getChannels(), isSignData(), isBigEndian());
 
             // Creates a new file to allow the user to write their audio input into
             File wavFile = new File( getFileName() + ".wav");
@@ -44,13 +43,14 @@ public class SoundRecorder extends AudioSettings implements Runnable {
             AudioInputStream ais = new AudioInputStream(audio_c.getMicrophoneInputEngine().getMicrophoneLine());
 
             // Starts recording
-            AudioSystem.write(ais, fileType, wavFile);
+            while(true) {
+                AudioSystem.write(ais, fileType, wavFile);
 
+            }
             // Catches an exception if the user inputs an invalid character
         } catch (IOException e) {
-            audio_c.stopRecording();
-            System.out.println("A filename cannot contain any of the following characters: \\ / : * ? \" < > | ");
-            menu();
+
+            System.out.println("Unable to create the WAV file ");
         }
     }
 

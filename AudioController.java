@@ -56,7 +56,6 @@ public class AudioController {
     // Stops recording and turns off all threads and DataLines
     public void stopRecording() {
         recording_engine.stopRecording();
-        mic_input_engine.stopLine();
         speaker_output_engine.stopLine();
 
         mic_engine_thread.stop();

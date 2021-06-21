@@ -10,6 +10,7 @@ public class MicrophoneInputEngine extends AudioSettings implements Runnable {
     private AudioController audio_c;
     private TargetDataLine microphoneLine;
     private AudioFormat microphoneFormat;
+    public int read_length = 400;
 
     public int readBytes;
 
@@ -40,12 +41,12 @@ public class MicrophoneInputEngine extends AudioSettings implements Runnable {
 
         // Creates a new Byte array with the buffer size specified from AudioSettings class
         // Byte array is used because it is the required parameter for a SourceDataLine to write audio into the mixer
-        byte[] data = new byte[getBufferSize()];
+        byte[] data = new byte[read_length];
 
         // A while loop is used to be able to read the audio input buffer and then write it to the user's mixer
         while(true) {
             // Read bytes from the microphone buffer
-            readBytes = microphoneLine.read(data, 0, data.length);
+            readBytes = microphoneLine.read(data, 0, read_length);
             audio_c.getSpeakerOutputEngine().getSpeakerLine().write(data, 0, readBytes);
 
         }

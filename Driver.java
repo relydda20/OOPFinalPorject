@@ -66,21 +66,14 @@ public class Driver {
                     // If statement to check if the recording thread is on or not to make sure they dont create
                     // multiple recordings at once
                     if (audioHub.recording_engine_thread == null) {
-                        try {
-                            System.out.println("Enter the name of the file: ");
-                            // uses the method in the soundRecorder class to get the file name
-                            audioHub.getSoundRecorder().fileName();
-                            // Set the file name
-                            String filename = audioHub.getSoundRecorder().getFileName();
-                            // Alter the sample rate of the input and output
-                            audioHub.startRecording();
-                            System.out.println("recording started\n");
-
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Unable to record");
-                            break;
-                        }
+                        System.out.println("Enter the name of the file: ");
+                        // uses the method in the soundRecorder class to get the file name
+                        audioHub.getSoundRecorder().fileName();// Set the file name
+                        String filename = audioHub.getSoundRecorder().getFileName();
+                        // Alter the sample rate of the input and output
+                        audioHub.startRecording();
+                        System.out.println("recording started\n");
+                        break;
                     } else {
                         System.out.println("Audio recording in progress!\n");
                         break;
@@ -88,23 +81,18 @@ public class Driver {
 
                 case 4:
                     if (audioHub.recording_engine_thread == null) {
-                        try {
-                            System.out.println("Enter the name of the file: ");
-                            // uses the method in the soundRecorder class to get the file name
-                            audioHub.getSoundRecorder().fileName();
-                            // Set the file name
-                            String filename = audioHub.getSoundRecorder().getFileName();
-                            // Alter the sample rate of the input and output
-                            audioHub.startRecordNoMonitor();
-                            System.out.println("recording started\n");
+                        System.out.println("Enter the name of the file: ");
+                        // uses the method in the soundRecorder class to get the file name
+                        audioHub.getSoundRecorder().fileName();
+                        // Set the file name
+                        String filename = audioHub.getSoundRecorder().getFileName();
+                        // Alter the sample rate of the input and output
+                        audioHub.startRecordNoMonitor();
+                        System.out.println("recording started");
+                        break;
 
-                            break;
-                        } catch (Exception e) {
-                            System.out.println("Unable to record");
-                            break;
-                        }
                     } else {
-                        System.out.println("Audio recording in progress!\n");
+                        System.out.println("Audio recording in progress!");
                         break;
                     }
 
@@ -115,18 +103,16 @@ public class Driver {
                         audioHub.mic_engine_thread = null;
                         break;
                     } catch (Exception e) {
-                        System.out.println("Audio recording isn't in progress!\n");
+                        System.out.println("Audio recording isn't in progress!");
                         break;
                     }
                 case 6:
                     System.exit(0);
 
                 default:
-                    System.out.println("Enter enter a correct integer\n");
+                    System.out.println("Enter enter a correct integer");
             }
 
         } while (userChoice != 6);
     }
 }
-
-
